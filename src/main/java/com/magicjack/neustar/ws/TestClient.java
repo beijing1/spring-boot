@@ -5,8 +5,8 @@ import javax.xml.soap.SOAPElement;
 import org.apache.axis.client.Stub;
 import org.apache.axis.message.SOAPHeaderElement;
 
-import com.espressodid.connect.cloud._public.v3.test.EspressoDIDLocator;
-import com.espressodid.connect.cloud._public.v3.test.EspressoDIDPortType;
+import https.EspressoDIDLocator;
+import https.EspressoDIDPortType;
 
 public class TestClient {
     public static void main(String[] args) {

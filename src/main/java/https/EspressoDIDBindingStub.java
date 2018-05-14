@@ -32,7 +32,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.setReturnClass(java.lang.String.class);
         oper.setReturnQName(new javax.xml.namespace.QName("", "return"));
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[0] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -47,7 +47,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[1] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -60,7 +60,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[2] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -73,7 +73,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[3] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -86,7 +86,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[4] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -99,7 +99,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[5] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -112,7 +112,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[6] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -129,7 +129,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[7] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -142,7 +142,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[8] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -155,7 +155,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[9] = oper;
 
     }
@@ -173,7 +173,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[10] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -186,7 +186,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[11] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -197,7 +197,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[12] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -208,7 +208,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[13] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
@@ -223,7 +223,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.RPC);
-        oper.setUse(org.apache.axis.constants.Use.ENCODED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[14] = oper;
 
     }
@@ -520,8 +520,7 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
             synchronized (this) {
                 if (firstCall()) {
                     // must set encoding style before registering serializers
-                    _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-                    _call.setEncodingStyle(org.apache.axis.Constants.URI_SOAP11_ENC);
+                    _call.setEncodingStyle(null);
                     for (int i = 0; i < cachedSerFactories.size(); ++i) {
                         java.lang.Class cls = (java.lang.Class) cachedSerClasses.get(i);
                         javax.xml.namespace.QName qName =
@@ -559,6 +558,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[0]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#testConnection");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "testConnection"));
 
@@ -590,6 +592,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[1]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpGetReport");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpGetReport"));
 
@@ -628,6 +633,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[2]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonLastStatus");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpPonLastStatus"));
 
@@ -666,6 +674,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[3]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonInfoForTelNumber");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpPonInfoForTelNumber"));
 
@@ -704,6 +715,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[4]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonsStatusFromDate");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpPonsStatusFromDate"));
 
@@ -742,6 +756,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[5]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonsByStatus");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpPonsByStatus"));
 
@@ -780,6 +797,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[6]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpCreatePons");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpCreatePons"));
 
@@ -818,6 +838,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[7]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpEditDDD");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpEditDDD"));
 
@@ -856,6 +879,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[8]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpCancelPon");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpCancelPon"));
 
@@ -894,6 +920,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[9]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpEditPon");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpEditPon"));
 
@@ -932,6 +961,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[10]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpCheckNpaNxxPortability");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpCheckNpaNxxPortability"));
 
@@ -970,6 +1002,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[11]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpEditPonRouting");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpEditPonRouting"));
 
@@ -1008,6 +1043,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[12]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpGetRoutingProfiles");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpGetRoutingProfiles"));
 
@@ -1046,6 +1084,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[13]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpGetApplicationErrorDictionary");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpGetApplicationErrorDictionary"));
 
@@ -1084,6 +1125,9 @@ public class EspressoDIDBindingStub extends org.apache.axis.client.Stub implemen
         _call.setOperation(_operations[14]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonChangeStatus");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("urn:https://connect.espressodid.com/cloud/public/v3/test", "lnpPonChangeStatus"));
 
