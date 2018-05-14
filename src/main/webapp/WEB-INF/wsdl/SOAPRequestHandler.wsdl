@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+	targetNamespace="http://www.neustar.biz/clearinghouse/SOAPRequestHandler/1.0"
+	xmlns:impl="http://www.neustar.biz/clearinghouse/SOAPRequestHandler/1.0"
+	xmlns:intf="http://www.neustar.biz/clearinghouse/SOAPRequestHandler/1.0"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+	
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema"
+			targetNamespace="http://www.neustar.biz/clearinghouse/SOAPRequestHandler/1.0">
+			<import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+			<complexType name="ArrayOf_xsd_string">
+				<complexContent>
+					<restriction base="soapenc:Array">
+						<attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]" />
+					</restriction>
+				</complexContent>
+			</complexType>
+		</schema>
+	</wsdl:types>
+
+	<wsdl:message name="processAsyncRequest">
+		<wsdl:part name="in0" type="xsd:string" />
+		<wsdl:part name="in1" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="processSyncResponse">
+		<wsdl:part name="processSyncReturn" type="impl:ArrayOf_xsd_string" />
+	</wsdl:message>
+
+	<wsdl:message name="processSyncRequest">
+		<wsdl:part name="in0" type="xsd:string" />
+		<wsdl:part name="in1" type="xsd:string" />
+	</wsdl:message>
+
+	<wsdl:message name="processAsyncResponse" />
+
+	<wsdl:portType name="SOAPRequestHandler">
+		<wsdl:operation name="processSync" parameterOrder="in0 in1">
+			<wsdl:input name="processSyncRequest" message="impl:processSyncRequest" />
+			<wsdl:output name="processSyncResponse" message="impl:processSyncResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="processAsync" parameterOrder="in0 in1">
+			<wsdl:input name="processAsyncRequest" message="impl:processAsyncRequest" />
+			<wsdl:output name="processAsyncResponse" message="impl:processAsyncResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="SOAPRequestHandlerSoapBinding" type="impl:SOAPRequestHandler">
+		<wsdlsoap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="processSync">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="processSyncRequest">
+				<wsdlsoap:body use="encoded"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.neustar.biz/clearinghouse/SOAPRequestHandler/1.0" />
+			</wsdl:input>
+			<wsdl:output name="processSyncResponse">
+				<wsdlsoap:body use="encoded"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.neustar.biz/clearinghouse/SOAPRequestHandler/1.0" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="processAsync">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="processAsyncRequest">
+				<wsdlsoap:body use="encoded"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.neustar.biz/clearinghouse/SOAPRequestHandler/1.0" />
+			</wsdl:input>
+
+			<wsdl:output name="processAsyncResponse">
+				<wsdlsoap:body use="encoded"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="http://www.neustar.biz/clearinghouse/SOAPRequestHandler/1.0" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="SOAPRequestHandlerService">
+		<wsdl:port name="SOAPRequestHandler" binding="impl:SOAPRequestHandlerSoapBinding">
+			<wsdlsoap:address
+				location="http://localhost:8080/axis/services/SOAPRequestHandler" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

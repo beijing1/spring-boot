@@ -1,0 +1,414 @@
+<definitions xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:tns="urn:https://connect.espressodid.com/cloud/public/v3/test"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:https://connect.espressodid.com/cloud/public/v3/test">
+
+	<types>
+		<xs:schema>
+			<xs:import namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+				schemaLocation="iristel.xsd" />
+		</xs:schema>
+	</types>
+
+	<message name="testConnectionRequest">
+		<part name="name" type="xs:string" />
+	</message>
+	<message name="testConnectionResponse">
+		<part name="return" type="xs:string" />
+	</message>
+	<message name="lnpGetReportRequest">
+		<part name="startDate" type="xs:string" />
+		<part name="endDate" type="xs:string" />
+	</message>
+	<message name="lnpGetReportResponse">
+		<part name="return" type="tns:lnpPonReportArray" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpPonLastStatusRequest">
+		<part name="pon" type="xs:string" />
+	</message>
+	<message name="lnpPonLastStatusResponse">
+		<part name="return" type="tns:lnpPonReport" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpPonInfoForTelNumberRequest">
+		<part name="number" type="xs:string" />
+	</message>
+	<message name="lnpPonInfoForTelNumberResponse">
+		<part name="return" type="tns:lnpPonShortInfoArray" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpPonsStatusFromDateRequest">
+		<part name="date" type="xs:string" />
+	</message>
+	<message name="lnpPonsStatusFromDateResponse">
+		<part name="return" type="tns:lnpPonShortInfoArray" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpPonsByStatusRequest">
+		<part name="status" type="xs:string" />
+	</message>
+	<message name="lnpPonsByStatusResponse">
+		<part name="return" type="tns:lnpPonShortInfoArray" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpCreatePonsRequest">
+		<part name="data" type="tns:lnpCreatePonRequest" />
+	</message>
+	<message name="lnpCreatePonsResponse">
+		<part name="return" type="tns:lnpPonShortInfoArray" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpEditDDDRequest">
+		<part name="pon" type="xs:string" />
+		<part name="desired_due_date" type="xs:string" />
+		<part name="auth_date" type="xs:string" />
+	</message>
+	<message name="lnpEditDDDResponse">
+		<part name="return" type="xs:string" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpCancelPonRequest">
+		<part name="pon" type="xs:string" />
+	</message>
+	<message name="lnpCancelPonResponse">
+		<part name="return" type="xs:string" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpEditPonRequest">
+		<part name="data" type="tns:lnpEditPonRequest" />
+	</message>
+	<message name="lnpEditPonResponse">
+		<part name="return" type="xs:string" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpCheckNpaNxxPortabilityRequest">
+		<part name="npanxx" type="xs:string" />
+	</message>
+	<message name="lnpCheckNpaNxxPortabilityResponse">
+		<part name="return" type="xs:int" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpEditPonRoutingRequest">
+		<part name="data" type="tns:lnpEditPonRoutingRequest" />
+	</message>
+	<message name="lnpEditPonRoutingResponse">
+		<part name="return" type="xs:string" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpGetRoutingProfilesRequest" />
+	<message name="lnpGetRoutingProfilesResponse">
+		<part name="return" type="tns:lnpRoutingProfileArray" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpGetApplicationErrorDictionaryRequest" />
+	<message name="lnpGetApplicationErrorDictionaryResponse">
+		<part name="return" type="tns:lnpApplicationErrorArray" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<message name="lnpPonChangeStatusRequest">
+		<part name="pon" type="xs:string" />
+		<part name="status" type="xs:string" />
+	</message>
+	<message name="lnpPonChangeStatusResponse">
+		<part name="return" type="xs:string" />
+		<part name="errors" type="tns:errorFieldArray" />
+	</message>
+	<portType name="espressoDIDPortType">
+		<operation name="testConnection">
+			<input message="tns:testConnectionRequest" />
+			<output message="tns:testConnectionResponse" />
+		</operation>
+		<operation name="lnpGetReport">
+			<input message="tns:lnpGetReportRequest" />
+			<output message="tns:lnpGetReportResponse" />
+		</operation>
+		<operation name="lnpPonLastStatus">
+			<input message="tns:lnpPonLastStatusRequest" />
+			<output message="tns:lnpPonLastStatusResponse" />
+		</operation>
+		<operation name="lnpPonInfoForTelNumber">
+			<input message="tns:lnpPonInfoForTelNumberRequest" />
+			<output message="tns:lnpPonInfoForTelNumberResponse" />
+		</operation>
+		<operation name="lnpPonsStatusFromDate">
+			<input message="tns:lnpPonsStatusFromDateRequest" />
+			<output message="tns:lnpPonsStatusFromDateResponse" />
+		</operation>
+		<operation name="lnpPonsByStatus">
+			<input message="tns:lnpPonsByStatusRequest" />
+			<output message="tns:lnpPonsByStatusResponse" />
+		</operation>
+		<operation name="lnpCreatePons">
+			<input message="tns:lnpCreatePonsRequest" />
+			<output message="tns:lnpCreatePonsResponse" />
+		</operation>
+		<operation name="lnpEditDDD">
+			<input message="tns:lnpEditDDDRequest" />
+			<output message="tns:lnpEditDDDResponse" />
+		</operation>
+		<operation name="lnpCancelPon">
+			<input message="tns:lnpCancelPonRequest" />
+			<output message="tns:lnpCancelPonResponse" />
+		</operation>
+		<operation name="lnpEditPon">
+			<input message="tns:lnpEditPonRequest" />
+			<output message="tns:lnpEditPonResponse" />
+		</operation>
+		<operation name="lnpCheckNpaNxxPortability">
+			<input message="tns:lnpCheckNpaNxxPortabilityRequest" />
+			<output message="tns:lnpCheckNpaNxxPortabilityResponse" />
+		</operation>
+		<operation name="lnpEditPonRouting">
+			<input message="tns:lnpEditPonRoutingRequest" />
+			<output message="tns:lnpEditPonRoutingResponse" />
+		</operation>
+		<operation name="lnpGetRoutingProfiles">
+			<input message="tns:lnpGetRoutingProfilesRequest" />
+			<output message="tns:lnpGetRoutingProfilesResponse" />
+		</operation>
+		<operation name="lnpGetApplicationErrorDictionary">
+			<input message="tns:lnpGetApplicationErrorDictionaryRequest" />
+			<output message="tns:lnpGetApplicationErrorDictionaryResponse" />
+		</operation>
+		<operation name="lnpPonChangeStatus">
+			<input message="tns:lnpPonChangeStatusRequest" />
+			<output message="tns:lnpPonChangeStatusResponse" />
+		</operation>
+	</portType>
+	<binding name="espressoDIDBinding" type="tns:espressoDIDPortType">
+		<soap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="testConnection">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#testConnection"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpGetReport">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpGetReport"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpPonLastStatus">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonLastStatus"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpPonInfoForTelNumber">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonInfoForTelNumber"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpPonsStatusFromDate">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonsStatusFromDate"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpPonsByStatus">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonsByStatus"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpCreatePons">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpCreatePons"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpEditDDD">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpEditDDD"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpCancelPon">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpCancelPon"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpEditPon">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpEditPon"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpCheckNpaNxxPortability">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpCheckNpaNxxPortability"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpEditPonRouting">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpEditPonRouting"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpGetRoutingProfiles">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpGetRoutingProfiles"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpGetApplicationErrorDictionary">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpGetApplicationErrorDictionary"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+		<operation name="lnpPonChangeStatus">
+			<soap:operation
+				soapAction="urn:https://connect.espressodid.com/cloud/public/v3/test#lnpPonChangeStatus"
+				style="rpc" />
+			<input>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+			<output>
+				<soap:body use="literal"
+					namespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+					encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+	</binding>
+	<service name="espressoDID">
+		<port name="espressoDIDPort" binding="tns:espressoDIDBinding">
+			<soap:address location="https://connect.espressodid.com/cloud/public/v3/test" />
+		</port>
+	</service>
+</definitions>

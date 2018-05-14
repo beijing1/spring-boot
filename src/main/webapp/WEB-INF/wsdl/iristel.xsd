@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+    targetNamespace="urn:https://connect.espressodid.com/cloud/public/v3/test"
+    xmlns:tns="urn:https://connect.espressodid.com/cloud/public/v3/test"
+    elementFormDefault="qualified">
+    
+    <import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+    
+    <complexType name="errorArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:errors[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="errors">
+        <all>
+            <element name="code" type="int" />
+            <element name="message" type="string" />
+            <element name="array_key" type="string" />
+        </all>
+    </complexType>
+    <complexType name="errorFieldArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:errorsField[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="errorsField">
+        <all>
+            <element name="code" type="int" />
+            <element name="message" type="string" />
+            <element name="array_key" type="string" />
+            <element name="regarding_field" type="string" />
+        </all>
+    </complexType>
+    <complexType name="stringArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="string[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpSdStructure">
+        <all>
+            <element name="activity" type="string" />
+            <element name="existing_account_number" type="string" />
+            <element name="start_number" type="string" />
+            <element name="end_number" type="string" />
+        </all>
+    </complexType>
+    <complexType name="lnpSdStructureArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpSdStructure[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpPonStructure">
+        <all>
+            <element name="service_type" type="string" />
+            <element name="current_provider_name" type="string" />
+            <element name="desired_due_date" type="string" />
+            <element name="auth_date" type="string" />
+            <element name="end_user_name" type="string" />
+            <element name="house_number" type="string" />
+            <element name="street_directional" type="string" />
+            <element name="street_suffix" type="string" />
+            <element name="street_name" type="string" />
+            <element name="street_type" type="string" />
+            <element name="descriptive_location" type="string" />
+            <element name="floor" type="string" />
+            <element name="room" type="string" />
+            <element name="building" type="string" />
+            <element name="city" type="string" />
+            <element name="province_state" type="string" />
+            <element name="zip_code" type="string" />
+            <element name="comments" type="string" />
+            <element name="losing_carrier_comments" type="string" />
+            <element name="service_details" type="tns:lnpSdStructureArray" />
+        </all>
+    </complexType>
+    <complexType name="lnpStatusStructure">
+        <all>
+            <element name="status" type="string" />
+            <element name="date" type="string" />
+        </all>
+    </complexType>
+    <complexType name="lnpStatusStructureArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpStatusStructure[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpVerStructureHistory">
+        <all>
+            <element name="date" type="string" />
+            <element name="pon_data" type="tns:lnpPonStructure" />
+            <element name="status" type="tns:lnpStatusStructureArray" />
+        </all>
+    </complexType>
+    <complexType name="lnpVerStructureHistoryArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpVerStructureHistory[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpVerStructure">
+        <all>
+            <element name="version" type="string" />
+            <element name="history" type="tns:lnpVerStructureHistoryArray" />
+        </all>
+    </complexType>
+    <complexType name="lnpVerStructureArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpVerStructure[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpStatusReasonDetail">
+        <all>
+            <element name="code" type="string" />
+            <element name="code_label" type="string" />
+            <element name="numbers" type="string" />
+            <element name="regarding_field" type="string" />
+            <element name="remarks" type="string" />
+        </all>
+    </complexType>
+    <complexType name="lnpStatusReasonDetailArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpStatusReasonDetail[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpStatusReason">
+        <all>
+            <element name="type" type="string" />
+            <element name="type_label" type="string" />
+            <element name="details" type="tns:lnpStatusReasonDetailArray" />
+        </all>
+    </complexType>
+    <complexType name="lnpPonReport">
+        <all>
+            <element name="date" type="string" />
+            <element name="pon" type="string" />
+            <element name="last_version" type="string" />
+            <element name="last_processstatus" type="string" />
+            <element name="date_last_update" type="string" />
+            <element name="status_reason" type="tns:lnpStatusReason" />
+            <element name="note" type="string" />
+            <element name="routing" type="tns:lnpRoutingStructure" />
+            <element name="versions" type="tns:lnpVerStructureArray" />
+        </all>
+    </complexType>
+    <complexType name="lnpPonReportArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpPonReport[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpPonShortInfo">
+        <all>
+            <element name="pon" type="string" />
+            <element name="last_version" type="string" />
+            <element name="last_processstatus" type="string" />
+            <element name="service_details" type="tns:lnpSdStructureArray" />
+            <element name="date_last_update" type="string" />
+        </all>
+    </complexType>
+    <complexType name="lnpPonShortInfoArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpPonShortInfo[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpRoutingDetails">
+        <all>
+            <element name="start_number" type="string" />
+            <element name="end_number" type="string" />
+            <element name="routing_profile" type="int" />
+        </all>
+    </complexType>
+    <complexType name="lnpRoutingDetailsArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpRoutingDetails[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpRoutingStructure">
+        <all>
+            <element name="default_routing_profile" type="int" />
+            <element name="details" type="tns:lnpRoutingDetailsArray" />
+        </all>
+    </complexType>
+    <complexType name="lnpRoutingProfile">
+        <all>
+            <element name="id" type="int" />
+            <element name="label" type="string" />
+            <element name="tech_prefix" type="string" />
+            <element name="format" type="string" />
+            <element name="routing_type" type="string" />
+            <element name="ips" type="tns:stringArray" />
+        </all>
+    </complexType>
+    <complexType name="lnpRoutingProfileArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpRoutingProfile[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpApplicationError">
+        <all>
+            <element name="code" type="string" />
+            <element name="message" type="string" />
+        </all>
+    </complexType>
+    <complexType name="lnpApplicationErrorArray">
+        <complexContent>
+            <restriction base="SOAP-ENC:Array">
+                <attribute ref="SOAP-ENC:arrayType" wsdl:arrayType="tns:lnpApplicationError[]" />
+            </restriction>
+        </complexContent>
+    </complexType>
+    <complexType name="lnpCreatePonRequest">
+        <all>
+            <element name="pon_data" type="tns:lnpPonStructure" />
+            <element name="routing" type="tns:lnpRoutingStructure" />
+        </all>
+    </complexType>
+    <complexType name="lnpEditPonRequest">
+        <all>
+            <element name="pon" type="string" />
+            <element name="pon_data" type="tns:lnpPonStructure" />
+        </all>
+    </complexType>
+    <complexType name="lnpEditPonRoutingRequest">
+        <all>
+            <element name="pon" type="string" />
+            <element name="routing" type="tns:lnpRoutingStructure" />
+        </all>
+    </complexType>
+
+</schema>
