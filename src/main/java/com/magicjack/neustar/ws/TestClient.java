@@ -2,36 +2,42 @@ package com.magicjack.neustar.ws;
 
 import javax.xml.soap.SOAPElement;
 
-import org.apache.axis.client.Stub;
-import org.apache.axis.message.SOAPHeaderElement;
+import org.apache.axis.soap.SOAPFactoryImpl;
 
-import https.EspressoDIDLocator;
-import https.EspressoDIDPortType;
+import https.*;
 
 public class TestClient {
     public static void main(String[] args) {
 
-        String username = "michael.sun@magicjack.com";
-        String password = "xB7%vZ3#";
-
+        String username = "Iristelproduction@magicjack.com";
+        username = "michael.sun@ymaxcorp.com";
+        
+        String password = "uT3#oU1*";
+        password = "bE8#yV1@";
         try {
             EspressoDIDLocator service = new EspressoDIDLocator();
             String url = service.getespressoDIDPortAddress();
             EspressoDIDPortType port = service.getespressoDIDPort();
-            Stub stub = (Stub) service.getespressoDIDPort();
-            // stub.setUsername(username);
-            // stub.setPassword(password);
+            EspressoDIDBindingStub stub = (EspressoDIDBindingStub) service.getespressoDIDPort();
+            stub.setUsername(username);
+            stub.setPassword(password);
+
+            //stub.setHeader(url, "UserName", username);
+            //stub.setHeader(url, "Password", password);
+
+            SOAPFactoryImpl soapy = new SOAPFactoryImpl();
+
+            SOAPElement creds = soapy.createElement("Credentials");
+            SOAPElement $username = soapy.createElement("username");
+            $username.addTextNode(username);
+            creds.addChildElement($username);
+
+            SOAPElement $password = soapy.createElement("password");
+            $password.addTextNode(password);
+            creds.addChildElement($password);
+            //stub.setHeader(url, "Credentials", creds);
             
-            // stub.setHeader(url, "UserName", username);
-            // stub.setHeader(url, "Password", password);
-            
-            SOAPHeaderElement header = new SOAPHeaderElement(url, "Credentials");
-            SOAPElement uname = header.addChildElement("username");
-            uname.addTextNode(username);
-            SOAPElement passwd = header.addChildElement("password");
-            passwd.addTextNode(password);
-            stub.setHeader(header);
-            String response = port.testConnection("hello");
+            String response = stub.testConnection("hello");
             System.out.println("Sent 'Hello!', got '" + response + "'");
         } catch (Exception e) {
             System.err.println(e.toString());
