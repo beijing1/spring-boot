@@ -1,0 +1,11 @@
+clear
+#debug=-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=y 
+
+if [[ $1 = 'new' ]]
+	then java -cp target/iristel-jar-with-dependencies.jar com.magicjack.neustar.ws.EspressoDIDTestCase $2 $3 $4 
+elif [[ $1 = 'old' ]]
+	then java -cp target/iristel-jar-with-dependencies.jar biz.IristelClient.EspressoDIDTestCase $2 $3 $4 
+else
+	java -cp target/iristel-jar-with-dependencies.jar com.magicjack.neustar.ws.TestClient
+fi
+

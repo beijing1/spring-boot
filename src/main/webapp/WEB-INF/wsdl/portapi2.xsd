@@ -1,0 +1,2264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  vc:minVersion="1.1" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+  <xs:annotation>
+    <xs:documentation>All request begin with element PartnerAPI</xs:documentation>
+  </xs:annotation>
+  <xs:simpleType name="canportcodedescriptiontype">
+    <xs:annotation>
+      <xs:documentation>Can Port Code Description<br/>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+      <xs:minLength value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="canportcodetype">
+    <xs:annotation>
+      <xs:documentation>Can Port Result<br/><br/>9 : CANPORT DOWN : RETRY LATER<br/>10 : Not
+        Eligible to Port<br/> 11 : ELIGIBLE TO PORT <br/> 12 : ALREADY PORTED TO YMAX <br/> 13 : WTN
+        ALREADY PENDING ON A PAPI PORT<br/> 15 : BTN ALREADY PENDING ON A PAPI PORT<br/> 20 : ACTIVE
+        IN CSR AND NOT PORTED <br/> 21 : PENDING RESIDENTIAL ORDER<br/> 22 : WTN SPID MUST MATCH BTN
+        SPID<br/>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="9"/>
+      <xs:maxInclusive value="22"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="didtype">
+    <xs:annotation>
+      <xs:documentation><b>Working Telephone Number</b>
+        <br/><br/> This is usually the telephone number related to the request.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="\d{10}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="reservedaysouttype">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="wtntype">
+    <xs:annotation>
+      <xs:documentation><b>Working Telephone Number</b>
+        <br/><br/> This is usually the telephone number related to the request.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="\d{10}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="cnamtype">
+    <xs:annotation>
+      <xs:documentation>
+        <b>Caller ID</b>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="15"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="actiontype">
+    <xs:annotation>
+      <xs:documentation>
+        <b>Caller ID Action A (Add) U (Update)</b>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="didlistactiontype">
+    <xs:annotation>
+      <xs:documentation>
+        <b>R (Reserve) A (Assign) B (Reserve and Assign)</b>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="btntype">
+    <xs:annotation>
+      <xs:documentation><b>Billing Telephone Number</b>
+        <br/><br/> Telephone number for the Master Account, has associated WTN's.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="\d{10}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="npatype">
+    <xs:annotation>
+      <xs:documentation>Number Plan Area<br/><br/> This is commonly known as Area
+        Code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="\d{3}"/>
+      <xs:totalDigits value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="nxxtype">
+    <xs:annotation>
+      <xs:documentation>Number Plan Exchange<br/><br/> This is commonly known as
+        exchange.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="\d{3}"/>
+      <xs:totalDigits value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="vanitysearchtype">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="10"/>
+      <xs:minLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="spidtype">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="4"/>
+      <xs:minLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="carriernametype">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100"/>
+      <xs:minLength value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="blocktype">
+    <xs:annotation>
+      <xs:documentation>BLock Indicator<br/><br/>This indicates with 1000 block from the 1000
+        possible numbers belowing to a given NPA NXX combination.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="\d{1}"/>
+      <xs:totalDigits value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="areatype">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+      <xs:minLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="responseuritype">
+    <xs:annotation>
+      <xs:documentation>Response URIr<br/>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="200"/>
+      <xs:minLength value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="migrationindicatortype">
+    <xs:annotation>
+      <xs:documentation>Migration Indicator<br/><br/>C=Full migration converting lines/numbers to a
+        new account<br/>A=Partial migration converting lines/numbers to a new account
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="duedateonlytype">
+    <xs:annotation>
+      <xs:documentation>Due Date Only<br/><br/>Determines if a resubmit is a due date only change
+        <br/> Default is N (no), a value of Y (yes) indicates the resubmit as due date only change
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TOStype">
+    <xs:annotation>
+      <xs:documentation>
+        <TOS>Type of Service<br/><br/> Identifies the type of service for the line ordered.<br/>
+          Valid values:<br/><br/> *   1st Character(type)<br/> *   1 = Business<br/> *   2 =
+          Residence<br/> *   3 = Government<br/> *   4 = Coin<br/> *   5 = Home Office<br/><br/> *
+          *   2nd Character(product)<br/> *   A = Multiline<br/> *   B = Single Line<br/> *   C =
+          Coin<br/> *   D = Advanced Services<br/> *   E = CENTREX Resale<br/> *   F = Data/Voice
+          Shared Loop<br/> *   H = ISDN (BRI)<br/> *   J = PBX (trunk)<br/> *   K = ISDN (PRI)<br/>
+          *   L = xDSL<br/> *   M = AIN record management<br/> *   N = LIDB record management
+          service<br/> *   P = Data voice split line<br/> *   Q = DID/DOD<br/> *   R = Data voice
+          shared line<br/> *   S = Coin basic line<br/> *   T = Coin smart line<br/> *   - = Not
+          Applicable<br/><br/> * *   3rd Character<br/> *   M = Measured Rate<br/> *   F = Flat
+          Rate<br/> *   G = Message<br/> *   H = Pre-pay overtime<br/> *   - = Not
+          Applicable<br/><br/> * *   4th Character (characterization)<br/> *   F = FXS (Foreign
+          Exchange Service)<br/> *   G = Semi-public<br/> *   N = Normal<br/> *   P =
+          Prison/Inmate<br/> *   R = RCF<br/> *   S = 800 Service<br/> *   W = WATS<br/> *   Y =
+          Hotel/Motel<br/> *   Z = Hospital<br/> *   - = Not Applicable<br/>
+        </TOS>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="4"/>
+      <xs:minLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="claimedcarriertype">
+    <xs:annotation>
+      <xs:documentation>The current carrier the customer is porting from. Example Vonage<br/>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100"/>
+      <xs:minLength value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="laststatusonlytype">
+    <xs:annotation>
+      <xs:documentation>Last Staus Only<br/><br/>A flag to indicate only the last status is to be
+        returned <br/> Default is N (no), a value of Y (yes) indicates only the last status will be
+        returned </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="authnametype">
+    <xs:annotation>
+      <xs:documentation>Port Order Auth Name<br/>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="15"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="statusxmltype">
+    <xs:annotation>
+      <xs:documentation>Port Order status XML<br/>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="customertypetype">
+    <xs:annotation>
+      <xs:documentation> Customer Type<br/><br/>M - magicJack Customer<br/>H - Hotel Customer<br/> S
+        - SMB Customer<br/>X - Telefonica Customer<br/>I - Connect Customer<br/>B - BroadSmart
+        Customer </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="1"/>
+      <xs:pattern value="M|H|S|X|I|B"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="statustype">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="statusdttype">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  <xs:simpleType name="duedatetype">
+    <xs:restriction base="xs:date"/>
+  </xs:simpleType>
+  <xs:simpleType name="rejectcodetype">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="rejectmessagetype">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="remarkstype">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="antype">
+    <xs:annotation>
+      <xs:documentation>Account Number<br/><br/> This is the customer account number with the
+        Carrier.<br/> Format and type is carrier controlled. </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="nametype">
+    <xs:annotation>
+      <xs:documentation>Customer or Business Name</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="25"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="cpctype">
+    <xs:annotation>
+      <xs:documentation>Customer Pass Code<br/><br/> This is carrier specific and not need for
+        wireline carriers<br/> Most Cell phone carrier require<br/> Other types of CLEC's will
+        vary</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="15"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="tokentype">
+    <xs:annotation>
+      <xs:documentation>Token<br/><br/> This is used to specific the address to tie to 911. In the
+        Sip world this does not have to be a Telephone Number but most often it
+        is.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="citytype">
+    <xs:annotation>
+      <xs:documentation>City Name </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="32"/>
+      <xs:minLength value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="statetype">
+    <xs:annotation>
+      <xs:documentation>State Abbreviation</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ziptype">
+    <xs:annotation>
+      <xs:documentation>Zip or Zip-4</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{5}(-[0-9]{4})?"/>
+      <xs:minLength value="5"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="countrytype">
+    <xs:annotation>
+      <xs:documentation>Country type. Can be US or CA.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2"/>
+      <xs:maxLength value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="qtytype">
+    <xs:annotation>
+      <xs:documentation>Quantity</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:totalDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="maxsettype">
+    <xs:annotation>
+      <xs:documentation>MaxSets<br/><br/> Indicate the maximum number of sets to return when
+        querying DID ranges.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:totalDigits value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ccnatype">
+    <xs:annotation>
+      <xs:documentation>Customer Carrier Name Abbrevition<br/><br/> Ymax Assigned, Must be 3
+        digits</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="versiontype">
+    <xs:annotation>
+      <xs:documentation>Version<br/><br/> Used to indicate which version of a PON Request. Each
+        modification must be submitted byincreasing the version by 1<br/> A new request would be
+        submitted with the version being 00<br/> Must be padded to 2 characters</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="idtype">
+    <xs:annotation>
+      <xs:documentation>Identifier<br/><br/> Customer Assigned, Any format. Must be
+        unique</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="address1type">
+    <xs:annotation>
+      <xs:documentation>Address 1<br/><br/>This is used the address is not already pre-parsed. This
+        tag can include street no, street no suffix, street name prefix, street name, street
+        directional indicator and street type.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="address2type">
+    <xs:annotation>
+      <xs:documentation>Address 2<br/><br/>This is used the address is not already pre-parsed. This
+        tag can include any additional information, for example building 12 or apt 12c,
+        etc.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sanotype">
+    <xs:annotation>
+      <xs:documentation>Service Address Number</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:positiveInteger">
+      <xs:totalDigits value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sasftype">
+    <xs:annotation>
+      <xs:documentation>Service Address Number Suffix</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="safdtype">
+    <xs:annotation>
+      <xs:documentation>Service Address Street Direction Prefix</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="2"/>
+      <xs:minLength value="0"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sasntype">
+    <xs:annotation>
+      <xs:documentation>Service Address Street Name</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="46"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sasstype">
+    <xs:annotation>
+      <xs:documentation>Service Address Street Suffix</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="sathtype">
+    <xs:annotation>
+      <xs:documentation>Service Address Street Type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="saaitype">
+    <xs:annotation>
+      <xs:documentation>Service Address Additional Info Type</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="46"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="serialnotype">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="60"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="resulttype">
+    <xs:annotation>
+      <xs:documentation>Result Message A message indicating a result or status. Often is related to
+        Result Code.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="resultcodetype">
+    <xs:annotation>
+      <xs:documentation>
+        <ResultCodes>Result Code <br/>
+          <br/>A numeric code indicating a status. <br/>PAPI DOMESTIC 0 SUCCESS <br/>PAPI DOMESTIC 1
+          MINIMUM SIZE OF (##) IS (##) <br/>PAPI DOMESTIC 2 MAXIMUM SIZE OF (##) IS (##) <br/>PAPI
+          DOMESTIC 3 XML ROOT TAG MUST BE PARTNERAPI <br/>PAPI DOMESTIC 9 CANPORT DOWN : RETRY LATER
+          <br/>PAPI DOMESTIC 10 NOT ELIGIBLE TO PORT <br/>PAPI DOMESTIC 11 ELIGIBLE TO PORT
+          <br/>PAPI DOMESTIC 12 ALREADY PORTED TO YMAX <br/>PAPI DOMESTIC 13 WTN ALREADY PENDING ON
+          A BUSINESS PORT <br/>PAPI DOMESTIC 14 CAN NOT RESUBMITPORT OR CANCELPORT A NEWPORT IN NACK
+          STATUS <br/>PAPI DOMESTIC 15 BTN / WTN ALREADY PENDING AS BTN ON A BUSINESS PORT <br/>PAPI
+          DOMESTIC 16 CAN NOT RESUBMITPORT OR CANCELPORT ON AN ORDER ALREADY COMPLETED <br/>PAPI
+          DOMESTIC 17 CSR REQUEST NOT FOUND ## ## ## <br/>PAPI DOMESTIC 18 LSR REQUEST NOT FOUND ##
+          ## ## <br/>PAPI DOMESTIC 19 CAN NOT RESUBMITPORT OR CANCELPORT ON AN ORDER ALREADY
+          CANCELLED <br/>PAPI DOMESTIC 20 ACTIVE IN CSR AND NOT PORTED <br/>PAPI DOMESTIC 21 PENDING
+          RESIDENTIAL ORDER <br/>PAPI DOMESTIC 22 WTN SPID MUST MATCH BTN SPID<br/>
+          <br/>PAPI DOMESTIC 50 INITIALIZEPORTS: UNCAUGHT EXCEPTION <br/>PAPI DOMESTIC 51 TRANSMIT
+          EXCEPTION TO NEUSTAR <br/>PAPI DOMESTIC 52 PROCESSSTATUSES: UNCAUGHT EXCEPTION TO NEUSTAR
+          <br/>PAPI DOMESTIC 53 PROCESSSTATUSES: UNCAUGHT EXCEPTION CREATING PARTNER PONVERSION FROM
+          PONSTATUS <br/>PAPI DOMESTIC 54 TRANSMIT EXCEPTION TO PARTNER <br/>PAPI DOMESTIC 76 PORT
+          WTN NOT FOUND <br/>PAPI DOMESTIC 77 LRN NOT FOUND <br/>PAPI DOMESTIC 78 EXCEPTION CREATING
+          RESPONSE <br/>PAPI DOMESTIC 79 VERSION AND LNPPON NOT FOUND IN PONVERSION <br/>PAPI
+          DOMESTIC 80 PONVERSIONID NOT LOADED <br/>PAPI DOMESTIC 81 PONVERSION.PONID <br/>PAPI
+          DOMESTIC 82 PONID NOT LOADED <br/>PAPI DOMESTIC 83 PON.PONDATAID NOT SET <br/>PAPI
+          DOMESTIC 84 PONDATA NOT LOADED <br/>PAPI DOMESTIC 85 PONDATA.PONDATADETAILID NOT SET
+          <br/>PAPI DOMESTIC 86 PONDATADETAILID NOT LOADED <br/>PAPI DOMESTIC 87 PONSTATUSID NOT
+          LOADED <br/>PAPI DOMESTIC 88 PONSTATUS.STATUSXMLIN NOT SET <br/>PAPI DOMESTIC 89
+          PONSTATUS.STATUSXMLOUT NOT SET <br/>PAPI DOMESTIC 90 PON UPDATE <br/>PAPI DOMESTIC 92
+          VERSION FOR NEWPORT MUST BE 00 <br/>PAPI DOMESTIC 93 NEWPORT PON NOT FOUND <br/>PAPI
+          DOMESTIC 94 VERSION FOR RESUBMITPORT OR CANCLEPORT CAN NOT BE 00 <br/>PAPI DOMESTIC 95
+          VERSION (##) MUST BE ONE GREATER THAN LAST SUBMITTED VERSION (##) <br/>PAPI DOMESTIC 96
+          VERSION FOR NEW REQUEST MUST BE 00 <br/>PAPI DOMESTIC 97 ## IS REQUIRED <br/>PAPI DOMESTIC
+          98 NO RECORDS FOUND <br/>PAPI DOMESTIC 99 DID NOT AVAILABLE <br/>PAPI DOMESTIC 100 NO
+          NUMBER AVAILABLE THAT MATCHES REQUEST <br/>PAPI DOMESTIC 101 XML_PROCESS_PARTNERAPI XML
+          NOT LOADED <br/>PAPI DOMESTIC 102 NUMBER IS NOT AVAILABLE <br/>PAPI DOMESTIC 103 NO VALID
+          ACTION FOUND <br/>PAPI DOMESTIC 104 NO VALID REQUEST FOUND <br/>PAPI DOMESTIC 105 NO CCNA
+          PROVIDED <br/>PAPI DOMESTIC 106 NO ID PROVIDED <br/>PAPI DOMESTIC 107 NO VERSION PROVIDED
+          <br/>PAPI DOMESTIC 108 PON TAG NOT FOUND <br/>PAPI DOMESTIC 109 UNKOWN ACTIONTYPE (##)
+          <br/>PAPI DOMESTIC 110 UNKOWN REQUESTTYPE (##) <br/>PAPI DOMESTIC 111 WTN (##) ALREADY ON
+          ORDER <br/>PAPI DOMESTIC 112 WTN (##) NOT ON ORDER <br/>PAPI DOMESTIC 113 NUMBER NOT
+          RESERVED ERROR: (##) <br/>PAPI DOMESTIC 114 NUMBER NOT ACTIVATED ERROR: (##) <br/>PAPI
+          DOMESTIC 115 NUMBER NOT RELEASED CURRENT DID VALUES(##) <br/>PAPI DOMESTIC 116 CAN NOT
+          PARSE ADDRESS <br/>PAPI DOMESTIC 117 CAN PORT EXCEPTION <br/>PAPI DOMESTIC 118 CAN NOT
+          RESUBMIT OR CANCEL WITHIN 24 HOURS OF FOC DATE <br/>PAPI DOMESTIC 119 CUSTOMER TYPE MUST
+          BE M (MAGIC JACK) <br/>PAPI DOMESTIC 120 CAN NOT RELEASE A CONTAMINATED DID <br/>PAPI
+          DOMESTIC 121 CAN NOT RELEASE DID STATUS IS (##) <br/>PAPI DOMESTIC 122 DID HAS ALREADY
+          BEEN RELEASED <br/>PAPI DOMESTIC 123 CAN NOT RELEASE DID IT IS ## <br/>PAPI DOMESTIC 124
+          CNAM ACTION MUST BE A (ADD) OR U (UPDATE) <br/>PAPI DOMESTIC 125 CNAM MAY ONLY CONTAIN
+          ALPHANUMERIC CHARACTERS <br/>PAPI DOMESTIC 126 DID IS STILL RESERVED UNTIL (##) <br/>PAPI
+          DOMESTIC 127 NUMBERDIDS Record is in the wrong status (##) <br/>PAPI DOMESTIC 128 Reserve
+          Number was not found (##) for serial (##) <br/>PAPI DOMESTIC 129 NUMBER BLOCK IS NOT
+          VALID: BLOCK STATUS:(##) block: (##) <br/>PAPI DOMESTIC 130 BTN (##) IS ON OPEN ORDER ID
+          (##) <br/>PAPI DOMESTIC 131 WTN (##) IS ON OPEN ORDER ID (##) <br/>PAPI DOMESTIC 132
+          NUMBER NOT ACTIVATED ERROR: (##) <br/>PAPI DOMESTIC 133 Bad address returned from
+          ParseAddress routine <br/>PAPI DOMESTIC 301 PON ALREADY SUBMITTED <br/>PAPI DOMESTIC 302
+          DUE DATE IN THE PAST <br/>PAPI DOMESTIC 306 TN ALREADY HAS PORT IN PROGRESS <br/>PAPI
+          DOMESTIC 307 NO ACTIVE PON FOUND TO SUP <br/>PAPI DOMESTIC 308 CUSTOMER NOT FOUND
+          <br/>PAPI DOMESTIC 311 INVALID PASS CODE <br/>PAPI DOMESTIC 312 CAN NOT SUP A CANCELLED
+          PON <br/>PAPI DOMESTIC 313 INVALID ACCOUNT NUMBER <br/>PAPI DOMESTIC 314 INVALID ZIP CODE
+          <br/>PAPI DOMESTIC 318 CAN NOT CANCEL COMPLETED PON <br/>PAPI DOMESTIC 319 DUE DATE CAN
+          NOT EXCEED 30 DAYS <br/>PAPI DOMESTIC 320 VERSION MUST BE INCREMENTED <br/>PAPI DOMESTIC
+          322 INVALID AUTH NAME <br/>PAPI DOMESTIC 999 FATAL ERROR processing (##) <br/>PAPI
+          CANADIAN 1 Authentication failed. You need to send soap headers or HTTP headers containing
+          your credentials. <br/>PAPI CANADIAN 2 Authentication failed. Wrong username / password.
+          <br/>PAPI CANADIAN 3 Daily function quota reached. <br/>PAPI CANADIAN 4 Your user does not
+          have the necessary credentials to use the requested function. <br/>PAPI CANADIAN 5 An
+          error was detected! Please retry later! <br/>PAPI CANADIAN 6 The requests array cannot be
+          empty! <br/>PAPI CANADIAN 7 DID Ordering is disabled at the moment. Please retry later!
+          <br/>PAPI CANADIAN 8 Account is blocked (50 failed login attempts within an hour)!
+          <br/>PAPI CANADIAN 101 You cannot have more than X Porting Requests open at the same time
+          in testing mode! <br/>PAPI CANADIAN 102 You are in Testing Mode. Please use only the
+          specified NPANXX when making Porting Requests. <br/>PAPI CANADIAN 103 The
+          "service_details" key must be an array and cannot be empty! <br/>PAPI CANADIAN 104 The PON
+          request array must contain structures with the following fields <br/>PAPI CANADIAN 105 The
+          "service_details" key must be an array that contains structures with the following fields
+          {activity,existing_account_number,start_number,end_number} <br/>PAPI CANADIAN 106 Invalid
+          Service Type! The accepted values are WIRELESS/WIRELINE <br/>PAPI CANADIAN 107 Invalid
+          Current Service Type! Current Service Type should not be empty when at least one Activity
+          is Port request! <br/>PAPI CANADIAN 130 Invalid Activity! Please select Port or Cancel!
+          <br/>PAPI CANADIAN 131 Invalid Current Provider Name! This field should not be empty!
+          <br/>PAPI CANADIAN 132 Invalid Authorization Date! <br/>PAPI CANADIAN 133 Invalid End User
+          Name! This field should not be empty! <br/>PAPI CANADIAN 134 Invalid Street Name! This
+          field should not be empty! <br/>PAPI CANADIAN 135 Invalid City! This field should not be
+          empty! <br/>PAPI CANADIAN 136 Invalid Province / State! Province / State should not be
+          empty! <br/>PAPI CANADIAN 137 Invalid ZIP Code! This field should not be empty! <br/>PAPI
+          CANADIAN 138 Invalid request! Numbers must be in the same Rate Center! <br/>PAPI CANADIAN
+          139 Invalid Existing Account Number! This field should not be empty when Current Service
+          Type is Wireless! <br/>PAPI CANADIAN 140 Floor should contain only alphanumeric
+          characters! <br/>PAPI CANADIAN 141 Room should contain only alphanumeric characters!
+          <br/>PAPI CANADIAN 142 End User Name should contain only alphanumeric characters!
+          <br/>PAPI CANADIAN 143 House Number should contain only alphanumeric characters! <br/>PAPI
+          CANADIAN 144 Street Name should contain only alphanumeric characters! <br/>PAPI CANADIAN
+          145 Street Type should contain only alphanumeric characters! <br/>PAPI CANADIAN 146
+          Descriptive Location should contain only alphanumeric characters! <br/>PAPI CANADIAN 147
+          Building should contain only alphanumeric characters! <br/>PAPI CANADIAN 148 City should
+          contain only alphanumeric characters! <br/>PAPI CANADIAN 149 Current Provider Name should
+          contain only alphanumeric characters! <br/>PAPI CANADIAN 150 Invalid End Number! Range
+          cannot contain more then 9999 numbers! <br/>PAPI CANADIAN 170 Invalid Existing Account
+          Number: X ! Existing Account Number only accepts alphanumeric characters and max length
+          allowed is X <br/>PAPI CANADIAN 171 Invalid Current Provider Name! Maximum length should
+          be X <br/>PAPI CANADIAN 172 Invalid Comments! Maximum length should be X <br/>PAPI
+          CANADIAN 173 Invalid End User Name! Maximum length should be X <br/>PAPI CANADIAN 174
+          Invalid Street Name! Maximum length should be X <br/>PAPI CANADIAN 175 Invalid Street
+          Type! Maximum length should be X <br/>PAPI CANADIAN 176 Invalid Descriptive Location!
+          Maximum length should be X <br/>PAPI CANADIAN 177 Invalid House Number! Maximum length
+          should be X <br/>PAPI CANADIAN 178 Invalid Floor ! Maximum length should be X <br/>PAPI
+          CANADIAN 179 Invalid Room! Maximum length should be X <br/>PAPI CANADIAN 180 Invalid
+          Building! Maximum length should be X <br/>PAPI CANADIAN 181 Invalid City! Maximum length
+          should be X <br/>PAPI CANADIAN 182 Invalid Desired Due Date <br/>PAPI CANADIAN 183 Invalid
+          Authorization Date <br/>PAPI CANADIAN 184 Rejected numbers: X <br/>PAPI CANADIAN 185
+          Duplicate number: X <br/>PAPI CANADIAN 186 Number X already exists <br/>PAPI CANADIAN 187
+          Invalid number: X ! Number should contain X digits! <br/>PAPI CANADIAN 188 Invalid Number:
+          X ! The number should not begin with X <br/>PAPI CANADIAN 189 Unsupported Rate Center for
+          porting for prefix X <br/>PAPI CANADIAN 190 Invalid ZIP Code: X <br/>PAPI CANADIAN 191
+          Invalid Floor : X! Floor should be empty when Current Service Type is Wireless! <br/>PAPI
+          CANADIAN 192 Invalid Province / State: X <br/>PAPI CANADIAN 193 Invalid End Number: X! End
+          Number must be greater than Start Number! <br/>PAPI CANADIAN 194 Invalid Street
+          Directional: X! Acceptable values are {N,S,E,W, NW, NE, SE, SW}! <br/>PAPI CANADIAN 195
+          Invalid range: X <br/>PAPI CANADIAN 196 Invalid End Number: X! Should contain X digits!
+          <br/>PAPI CANADIAN 197 Invalid Start Number: X! Start Number should contain X <br/>PAPI
+          CANADIAN 198 Invalid Number: X! <br/>PAPI CANADIAN 251 You don't have access to this
+          request! <br/>PAPI CANADIAN 252 This PON is blocked for cancel operation! Please retry
+          later! <br/>PAPI CANADIAN 253 Invalid request! Please retry later! <br/>PAPI CANADIAN 254
+          This PON can't be cancelled! A confirmed PON can be cancelled if there are at least 24
+          hours before the Desired Due Date expires! <br/>PAPI CANADIAN 271 You are not sending
+          valid dateTime variables. The variables must be in the form of 'Y' <br/>PAPI CANADIAN 272
+          The end date must be later than the start date! <br/>PAPI CANADIAN 273 Sorry there are no
+          pons between those dates! <br/>PAPI CANADIAN 291 The status you are trying to search for
+          is not permited ! Please use one of the following {New,Pending,Processed,Rejected. Pending
+          Update,Confirmed,Updated,Closed,Canceled,Pending Cancellation} <br/>PAPI CANADIAN 292 You
+          do not have any pons with that status ! <br/>PAPI CANADIAN 311 PON number cannot be empty!
+          <br/>PAPI CANADIAN 312 The requested PON does not exist or it does not belong to your
+          company ! <br/>PAPI CANADIAN 331 Please provide a telephone number! <br/>PAPI CANADIAN 332
+          We haven't found a PON added by your company containing this number, that is not canceled
+          or closed <br/>PAPI CANADIAN 351 Invalid date sent! The maximum date must be today.
+          <br/>PAPI CANADIAN 352 Sorry there aren't any pons from that date ! <br/>PAPI CANADIAN 371
+          Invalid Request! You must have all the variables set PON, Desired Due Date, Authorization
+          Date <br/>PAPI CANADIAN 372 Invalid Desired Due Date, the format must be Y <br/>PAPI
+          CANADIAN 373 Invalid Authorization Date, the format must be Y <br/>PAPI CANADIAN 374 This
+          PON is blocked for updating! Please retry later! <br/>PAPI CANADIAN 375 The desired due
+          date cannot be changed if there are less than 24 hours between the confirmation date and
+          the current date! <br/>PAPI CANADIAN 376 You haven't made any changes to the dates!
+          <br/>PAPI CANADIAN 391 Incorrect NPA NXX Format! The npanxx must be a 6 characters number
+          <br/>PAPI CANADIAN 392 This rate center is supported by Iristel, but not opened yet for
+          portability. Opening takes 60 <br/>PAPI CANADIAN 393 The provided NPA NXX was not found in
+          out system. Please make sure you are sending a valid NPA NXX combination. <br/>PAPI
+          CANADIAN 411 This PON is blocked for updating! Only 'lnpEditDDD' is allowed! <br/>PAPI
+          CANADIAN 412 The numbers can't be from different rate centers! Please check them!
+          <br/>PAPI CANADIAN 413 The ratecenter is unsupported! <br/>PAPI CANADIAN 414 Rejected
+          numbers: X! Please add them to another PON! <br/>PAPI CANADIAN 700 Invalid Request format!
+        </ResultCodes>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:simpleType name="responseidtype">
+    <xs:annotation>
+      <xs:documentation>Response ID<br/><br/> An index pointer used to retrieve the result of E911
+        batch provisioning request.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:complexType name="pongrouptype">
+    <xs:annotation>
+      <xs:documentation>Pon Group<br/><br/> This contains all related elements require to uniquely
+        identify an order.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="CCNA" type="ccnatype">
+        <xs:annotation>
+          <xs:documentation>Customer Carrier Name Abbreviation </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID" type="idtype">
+        <xs:annotation>
+          <xs:documentation>Identifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Version" type="versiontype">
+        <xs:annotation>
+          <xs:documentation>Version<br/><br/> Each time a change or modification is submitted
+            version has to change.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomerType" type="customertypetype">
+        <xs:annotation>
+          <xs:documentation>Customer Type<br/><br/>M - magicJack Customer<br/>H - Hotel
+            Customer<br/> S - SMB Customer<br/>X - Telefonica Customer<br/>I - Connect
+            Customer<br/>B - BroadSmart Customer </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="diddetailtype">
+    <xs:annotation>
+      <xs:documentation>DID Detail<br/><br/> This contains DID and Serial_no.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="DID" type="didtype">
+        <xs:annotation>
+          <xs:documentation>WTN</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Serial_no" type="serialnotype">
+        <xs:annotation>
+          <xs:documentation>Serial No</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="responsebasetype">
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResultCode" type="resultcodetype">
+        <xs:annotation>
+          <xs:documentation>Result Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Result" type="resulttype">
+        <xs:annotation>
+          <xs:documentation>Result Message</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseID" type="responseidtype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Response ID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="didqueryresultsettype">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="DID" type="didtype"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="queryportstatusresultsettype">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="Status" type="statusxmltype"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="vanityqueryresultsettype">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="DID" type="didtype"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="resultsettype">
+    <xs:sequence>
+      <xs:any/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="serviceaddresstype">
+    <xs:sequence>
+      <xs:element name="Address1" type="address1type" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Address Line 1<br/><br/> Example: 128C East Lakeview Drive Northwest,
+            Franklin TN 37067<br/><br/> In this example, "128C East Lakeview Drive" is the
+            Address1</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Address2" type="address2type" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Address Line 2<br/><br/> Example: 128C East Lakeview Drive Northwest,
+            Bld 12C, Franklin TN 37067<br/><br/> In this example "Bld 12C" is
+            Address2</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SANO" type="sanotype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Service Address Address Number - aka House Number<br/><br/> Example:
+            128C East Lakeview Drive Northwest, Franklin TN 37067<br/><br/> In this example the
+            House Numbrer is 128 </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SASF" type="sasftype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Service Address Number Suffix - Alpa addition<br/><br/> Example: 128C
+            East Lakeview Drive Northwest, Franklin TN 37067<br/><br/> In this example the Number
+            Suffix is C </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SAFD" type="safdtype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Service Address Street Directional Prefix<br/><br/> Example: 128C E
+            Lakeview Drive Northwest, Franklin TN 37067<br/><br/> In this example the Prefix is
+            E<br/><br/> NOTE: this must be abbreviated. East=E, North East = NE, etc
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SASN" type="sasntype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Service Address Street Name<br/><br/> Example: 128C East Lakeview Drive
+            Northwest, Franklin TN 37067<br/><br/> In this example the Name is Lakeview
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SASS" type="sasstype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Service Address Street Suffix<br/><br/> Example: 128C East Lakeview
+            Drive Northwest, Franklin TN 37067<br/><br/> In this example the Street Suffix is
+            NW<br/><br/> Must also be abbrevated </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SATH" type="sathtype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Service Address Street Type<br/><br/> Example: 128C East Lakeview Drive
+            Northwest, Franklin TN 37067<br/><br/> In this example the Street Type is Dr
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SAAI" type="saaitype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Service Address Additional Information<br/><br/> Example: 128C East
+            Lakeview Drive Northwest, Apt 13C, Franklin TN 37067<br/><br/> In this example the
+            Additional Information Type is Apt 13C </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="City" type="citytype">
+        <xs:annotation>
+          <xs:documentation>Service Address City<br/><br/> Example: 128C East Lakeview Drive
+            Northwest, Franklin TN 37067<br/><br/> In this example the City is Franklin
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="State" type="statetype">
+        <xs:annotation>
+          <xs:documentation>Service Address State<br/><br/> Example: 128C East Lakeview Drive
+            Northwest, Franklin TN 37067<br/><br/> In this example the State is TN
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Zip" type="ziptype">
+        <xs:annotation>
+          <xs:documentation>Service Address Zip<br/><br/> Example: 128C East Lakeview Drive
+            Northwest, Franklin TN 37067<br/><br/> In this example the City is 37067
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Country" type="countrytype" minOccurs="0" default="US">
+        <xs:annotation>
+          <xs:documentation>Service Address Country<br/><br/> Example: 128C East Lakeview Drive
+            Northwest, Franklin TN 37067 US<br/><br/> In this example the Country is US
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="requestouttype">
+    <xs:annotation>
+      <xs:documentation>Request Out<br/><br/> This inicate a Request from the Partner to the LNP
+        Provider or the E911 Provider or the DID Provider.</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="DIDList" type="didlisttype">
+        <xs:annotation>
+          <xs:documentation>A list of Reserve and or Activate phone numbers</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NewPort" type="newportintype">
+        <xs:annotation>
+          <xs:documentation>Request to Port number(s) in</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CanPort" type="canporttype">
+        <xs:annotation>
+          <xs:documentation>Request to Port number(s) in</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SetCNAM" type="setcnamtype">
+        <xs:annotation>
+          <xs:documentation>Request to Set the Caller ID on a WTN</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CancelPort" type="cancelportintype">
+        <xs:annotation>
+          <xs:documentation>Cancel a pending Port In Request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResubmitPort" type="resubmitportintype">
+        <xs:annotation>
+          <xs:documentation>Resubmit an existing (uncompleted) Port In request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SetE911" type="sete911type">
+        <xs:annotation>
+          <xs:documentation>Submit address to be used by E911</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UpdateE911" type="updatee911type">
+        <xs:annotation>
+          <xs:documentation>Submit an address change to be used by E911</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RemoveE911" type="removee911type">
+        <xs:annotation>
+          <xs:documentation>Remove address from E911 database</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GetE911RespCode" type="gete911provcodetype">
+        <xs:annotation>
+          <xs:documentation>Get provisioning response from E911 database</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryDIDRange" type="querydidrangetype" form="qualified">
+        <xs:annotation>
+          <xs:documentation>Query and return a set of Did's</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryPortStatus" type="queryportstatustype" form="qualified">
+        <xs:annotation>
+          <xs:documentation>Query the status for a port by TN</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryVanityDIDRange" type="queryvanitydidrangetype" form="qualified">
+        <xs:annotation>
+          <xs:documentation>Query and return a set of Vanity Did's</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryAreaCodes" type="queryareacodes"/>
+      <xs:element name="QueryExchange" type="queryexchange"/>
+      <xs:element name="ReserveDID" type="reservedidtype">
+        <xs:annotation>
+          <xs:documentation>Reserve DID's</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AssignDID">
+        <xs:annotation>
+          <xs:documentation>Assign DID</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="PON" type="pongrouptype">
+              <xs:annotation>
+                <xs:documentation>Purchase Order Number</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="AN" type="antype">
+              <xs:annotation>
+                <xs:documentation>Account Number<br/><br/> This is the partners account number
+                  associated with the WTN being assigned.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="DID" type="didtype">
+              <xs:annotation>
+                <xs:documentation>Working Telephone Number<br/><br/> This is the telephone number
+                  you wish to assign</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Serial_no" type="serialnotype">
+              <xs:annotation>
+                <xs:documentation>Serial Number<br/><br/> This should be a unique representation of
+                  the port on the device this DID will be associated with. It should include the
+                  port no. Thus maybe something like SERIAL+PORT. </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReleaseDID">
+        <xs:annotation>
+          <xs:documentation>Release DID</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="PON" type="pongrouptype">
+              <xs:annotation>
+                <xs:documentation>Purchase Order Number</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="DID" type="didtype">
+              <xs:annotation>
+                <xs:documentation>Working Telephone Number<br/><br/> This is the telephone number
+                  you wish to release.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="ReserveDaysOut" type="reservedaysouttype" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Reserve Days Out<br/><br/> Number of days in the future to set the
+                  reserve date to.<br/> The default is 60 Days if no value is passed in. A value of
+                  0 will set the Reserve Date to the current datetime and effectively make the DID
+                  available immediatelly to be queried and reserved. </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="requestintype">
+    <xs:annotation>
+      <xs:documentation>Request In<br/><br/> This indicate a Request from the LNP Provider or the
+        E911 Provider or the DID Provider to the Partner.</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PortOut" type="portouttype">
+        <xs:annotation>
+          <xs:documentation>A request from another carrier to port out a number
+            out</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="PortOutSup" type="portoutsuptype">
+        <xs:annotation>
+          <xs:documentation>A sup request from another carrier to a port out
+            request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CustomerServiceRecord">
+        <xs:annotation>
+          <xs:documentation>A request from another carrier for the Customer Service
+            Record.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="PON" type="pongrouptype"/>
+            <xs:element name="WTN" type="didtype"/>
+            <xs:any maxOccurs="unbounded" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>NOTE: There may be an additional fields supplied by the carrier
+                  requesting the Customer Service Record that he received from the customer that
+                  would help us identify the correct account and ensure the request would not be
+                  consider a slamming request.</xs:documentation>
+              </xs:annotation>
+            </xs:any>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="portouttype">
+    <xs:annotation>
+      <xs:documentation>Port Out Request<br/><br/> This is a request the Partner will receive from
+        another carrier stating the customer desires to move this number to the sending
+        carrier.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>PON</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WTN" type="didtype">
+        <xs:annotation>
+          <xs:documentation>Working Telephone Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Zip" type="ziptype">
+        <xs:annotation>
+          <xs:documentation>Zip Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CPC" type="cpctype">
+        <xs:annotation>
+          <xs:documentation>Customer Pass Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AN" type="antype">
+        <xs:annotation>
+          <xs:documentation>Account Number<br/><br/> NOTE: On a port out request this will be the
+            partners account number that you supplied in the Customer Service Record
+            reponse.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="portoutsuptype">
+    <xs:annotation>
+      <xs:documentation>Port Out Sup Request<br/><br/> This is a request the Partner will receive to
+        suppliment (change) a previous Port Out Request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WTN" type="didtype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Working Telephone Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Zip" type="ziptype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Zip Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CPC" type="cpctype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Customer Pass Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AN" type="antype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Account Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="didlisttype">
+    <xs:annotation>
+      <xs:documentation>DID List Request<br/><br/> This Request Type is used to process a list of
+        DIDs and serialnos.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Action" type="didlistactiontype">
+        <xs:annotation>
+          <xs:documentation>R (Reserve) A (Assign) B (Reserve and Assign)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DIDDetail" type="diddetailtype" maxOccurs="100" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A List Container with 1 DID and 1 Serial_no per DIDDetail
+            entry</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="canporttype">
+    <xs:annotation>
+      <xs:documentation>Can Port Request<br/><br/> This Request Type is used to identify a WTN as
+        being portable from another carrier to YMAX.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WTN" type="wtntype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Business or Customer's WTN to evaluate as being portable to
+            YMAX</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BTN" type="btntype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Business or Customer's BTN to evaluate as being available to
+            use.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setcnamtype">
+    <xs:annotation>
+      <xs:documentation>Set CNAM Request<br/><br/> This Request Type is used to set the caller ID on
+        a WTN</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WTN" type="wtntype" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Business or Customer's WTN to set Caller ID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Action" type="actiontype" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A (Add) U (Update)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CNAM" minOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Caller ID value</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="cnamtype">
+            <!-- <xs:assertion test=""/> -->
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="newportintype">
+    <xs:annotation>
+      <xs:documentation>Port In Request<br/><br/> This Request Type is used to port a working
+        number(s) from another carrier to YMAX.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="nametype">
+        <xs:annotation>
+          <xs:documentation>Business or Customer's Name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="service_address" type="serviceaddresstype"/>
+      <xs:element name="BTN" type="didtype">
+        <xs:annotation>
+          <xs:documentation>Billing Telephone Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CCN" type="antype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Carrier Customer Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CPC" type="cpctype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Customer Pass Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DueDate" type="duedatetype"/>
+      <xs:element name="MigrationIndicator" type="migrationindicatortype">
+        <xs:annotation>
+          <xs:documentation>A=Partial migration converting lines/numbers to a new account B=Partial
+            migration converting lines/numbers to an existing account C=Full migration converting
+            lines/numbers to a new account D=Full migration converting lines/numbers to an existing
+            account E=Full/partial migration converting lines/numbers to an</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AuthName" type="authnametype">
+        <xs:annotation>
+          <xs:documentation>Port Authorization Name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseURI" type="responseuritype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ResponseURI</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TOS" type="TOStype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>
+            <TOS>Type of Service<br/><br/> Identifies the type of service for the line ordered.<br/>
+              Valid values:<br/><br/>    1st Character(type)<br/>    1 = Business<br/>    2 =
+              Residence<br/>    3 = Government<br/>    4 = Coin<br/>    5 = Home Office<br/><br/>   
+              2nd Character(product)<br/>    A = Multiline<br/>    B = Single Line<br/>    C =
+              Coin<br/>    D = Advanced Services<br/>    E = CENTREX Resale<br/>    F = Data/Voice
+              Shared Loop<br/>    H = ISDN (BRI)<br/>    J = PBX (trunk)<br/>    K = ISDN (PRI)<br/>
+                 L = xDSL<br/>    M = AIN record management<br/>    N = LIDB record management
+              service<br/>    P = Data voice split line<br/>    Q = DID/DOD<br/>    R = Data voice
+              shared line<br/>    S = Coin basic line<br/>    T = Coin smart line<br/>    - = Not
+              Applicable<br/><br/>    3rd Character<br/>    M = Measured Rate<br/>    F = Flat
+              Rate<br/>    G = Message<br/>    H = Pre-pay overtime<br/>    - = Not
+              Applicable<br/><br/>    4th Character (characterization)<br/>    F = FXS (Foreign
+              Exchange Service)<br/>    G = Semi-public<br/>    N = Normal<br/>    P =
+              Prison/Inmate<br/>    R = RCF<br/>    S = 800 Service<br/>    W = WATS<br/>    Y =
+              Hotel/Motel<br/>    Z = Hospital<br/>    - = Not Applicable<br/></TOS>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ClaimedCarrier" type="claimedcarriertype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The current carrier the customer is porting from. Example
+            Vonage</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WTNOperation">
+        <xs:annotation>
+          <xs:documentation>Contains Add, Remove or Both<br/><br/> See description fo Add or Rmmove
+            for more inforation.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice maxOccurs="1">
+            <xs:element name="Add">
+              <xs:annotation>
+                <xs:documentation>Should contain either a <br/><br/> list of WTN's to port if new
+                  (version is 00)<br/> list of WTN's to add to existing open port request<br/>
+                </xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="WTN" type="didtype">
+                    <xs:annotation>
+                      <xs:documentation>Working Telephone Numbrer to port.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="resubmitportintype">
+    <xs:annotation>
+      <xs:documentation>Port In Sup Request<br/><br/> This Request Type is used to Suppliment
+        (change) and Resubmit a pending Port In request.<br/><br/> Direction: Partner -> Provider
+        <br/> In short, this is identical to the NewPort except all the fields are optional with the
+        exception of the PON </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="nametype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Business or Customer's Name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="service_address" type="serviceaddresstype" minOccurs="0"/>
+      <xs:element name="BTN" type="didtype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Billing Telephone Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CCN" type="antype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Carrier Customer Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CPC" type="cpctype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Customer Pass Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DueDate" type="duedatetype" minOccurs="0"/>
+      <xs:element name="MigrationIndicator" type="migrationindicatortype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>A=Partial migration converting lines/numbers to a new account B=Partial
+            migration converting lines/numbers to an existing account C=Full migration converting
+            lines/numbers to a new account D=Full migration converting lines/numbers to an existing
+            account E=Full/partial migration converting lines/numbers to an</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AuthName" type="authnametype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Port Authorization Name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseURI" type="responseuritype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ResponseURI</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DueDateOnly" type="duedateonlytype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>DueDateOnly</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TOS" type="TOStype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Type of Service<br/><br/> Identifies the type of service for the line
+            ordered.<br/> Valid values:<br/><br/>    1st Character(type)<br/>    1 = Business<br/>
+               2 = Residence<br/>    3 = Government<br/>    4 = Coin<br/>    5 = Home
+            Office<br/><br/>    2nd Character(product)<br/>    A = Multiline<br/>    B = Single
+            Line<br/>    C = Coin<br/>    D = Advanced Services<br/>    E = CENTREX Resale<br/>    F
+            = Data/Voice Shared Loop<br/>    H = ISDN (BRI)<br/>    J = PBX (trunk)<br/>    K = ISDN
+            (PRI)<br/>    L = xDSL<br/>    M = AIN record management<br/>    N = LIDB record
+            management service<br/>    P = Data voice split line<br/>    Q = DID/DOD<br/>    R =
+            Data voice shared line<br/>    S = Coin basic line<br/>    T = Coin smart line<br/>    -
+            = Not Applicable<br/><br/>    3rd Character<br/>    M = Measured Rate<br/>    F = Flat
+            Rate<br/>    G = Message<br/>    H = Pre-pay overtime<br/>    - = Not
+            Applicable<br/><br/>    4th Character (characterization)<br/>    F = FXS (Foreign
+            Exchange Service)<br/>    G = Semi-public<br/>    N = Normal<br/>    P =
+            Prison/Inmate<br/>    R = RCF<br/>    S = 800 Service<br/>    W = WATS<br/>    Y =
+            Hotel/Motel<br/>    Z = Hospital<br/>    - = Not Applicable<br/>
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+
+      <xs:element name="WTNOperation" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Contains Add, Remove or Both<br/><br/> See description fo Add or Rmmove
+            for more inforation.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:choice maxOccurs="1">
+            <xs:element name="Add">
+              <xs:annotation>
+                <xs:documentation>Should contain either a <br/><br/> list of WTN's to port if new
+                  (version is 00)<br/> Or a list of WTN's to port to existing open port request<br/>
+                </xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="WTN" type="didtype">
+                    <xs:annotation>
+                      <xs:documentation>Working Telephone Numbrer to port.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cancelportintype">
+    <xs:annotation>
+      <xs:documentation>Cancel Port In Request<br/><br/> This Request Type would be used to Cancel a
+        Port In request that is still in progress.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sete911type">
+    <xs:annotation>
+      <xs:documentation>Set E911 Address Request<br/><br/> This Request Type is used to associate a
+        E911 address to a phone number.<br/> This is registering an address for which emergency
+        services will respond to when receiving a 911 call from the WTN associated by this
+        request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WTN" type="wtntype">
+        <xs:annotation>
+          <xs:documentation>Working Telephone Number This should be the telephone number to
+            associate the address with.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BTN" type="btntype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Billing Telephone Number Not a required field; this should be the
+            telephone number to associate the WTN with.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="nametype">
+        <xs:annotation>
+          <xs:documentation>This is the name associated with the WTN on the
+            account.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="E911Address" type="serviceaddresstype">
+        <xs:annotation>
+          <xs:documentation>This is the E911 Address associated with the WTN on the
+            account.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updatee911type">
+    <xs:annotation>
+      <xs:documentation>Update E911 Address Request<br/><br/> This Request Type is used to update
+        the E911 address of a phone number that was previously loaded.<br/> This request changes the
+        address of which emergency services will respond to when receiving a 911 call from the WTN
+        associated by this request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WTN" type="wtntype">
+        <xs:annotation>
+          <xs:documentation>Working Telephone Number This should be the telephone number to
+            associate the address with.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BTN" type="btntype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Billing Telephone Number Not a required field; this should be the
+            telephone number to associate the WTN with.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="nametype">
+        <xs:annotation>
+          <xs:documentation>This is the name associated with the WTN on the
+            account.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="E911Address" type="serviceaddresstype">
+        <xs:annotation>
+          <xs:documentation>This is the E911 Address associated with the WTN on the
+            account.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="removee911type">
+    <xs:annotation>
+      <xs:documentation>Remove E911 Request<br/><br/> This removes a telephone number from the E911
+        System.<br/> Note if they receive a call from the WTN associated with this request, they
+        will no longer know where to go of the caller can not tell them.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WTN" type="wtntype">
+        <xs:annotation>
+          <xs:documentation>Token<br/><br/> This is the telehphone number for which you wish to
+            remove the address from E911.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="BTN" type="btntype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Billing Telephone Number Not a required field; this should be the
+            telephone number to associate the WTN with.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="nametype">
+        <xs:annotation>
+          <xs:documentation>This is the name associated with the WTN on the
+            account.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="E911Address" type="serviceaddresstype">
+        <xs:annotation>
+          <xs:documentation>The E911 Address for RemoveE911Request, does not need to be the address
+            associated with the WTN on the account. This address can be the address of portalAgent,
+            etc. I generally use the same address for all deletes, a default delete address, like
+            your business address.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="gete911provcodetype">
+    <xs:annotation>
+      <xs:documentation>Get E911 Provisioning Code<br/><br/> Get the batch response for the WTN for
+        which previously a E911 provisioning request was sent.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ResponseID" type="responseidtype">
+        <xs:annotation>
+          <xs:documentation>ResponseID previous sent back with SUCCESSful E911 Provisioning
+            Request.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="querydidrangetype">
+    <xs:annotation>
+      <xs:documentation>Query DID Range Request<br/><br/> This Request Type is used to query a range
+        of consecutive DID numbers and will return multiple (up to MaxSets) of DID(s) that have
+        Quantity of unused consecutive numbers available. Note: Quantity of consecutive numbers can
+        be 1</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NPA" type="npatype">
+        <xs:annotation>
+          <xs:documentation>Area Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NXX" type="nxxtype">
+        <xs:annotation>
+          <xs:documentation>Number Plan Exchange<br/><br/> This is commonly known as
+            exchange.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Block" type="blocktype">
+        <xs:annotation>
+          <xs:documentation>BLock Indicator<br/><br/>This indicates with 1000 block from the 1000
+            possible numbers belowing to a given NPA NXX combination.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="qtytype">
+        <xs:annotation>
+          <xs:documentation>Quantity of consectutive number(s) desired</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MaxSets" type="maxsettype">
+        <xs:annotation>
+          <xs:documentation>Maximum Sets to Return</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="queryportstatustype">
+    <xs:annotation>
+      <xs:documentation>Query Port Status Request<br/></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="WTN" type="wtntype">
+        <xs:annotation>
+          <xs:documentation>Working Telephone number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="LastStatusOnly" type="laststatusonlytype">
+        <xs:annotation>
+          <xs:documentation>Last Status Only</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="queryvanitydidrangetype">
+    <xs:annotation>
+      <xs:documentation>Query Vanity Number Request<br/><br/> This Request Type is used to query a
+        list of vanity numbers</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NPA" type="npatype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Area Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NXX" type="nxxtype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Number Plan Exchange<br/><br/> This is commonly known as
+            exchange.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Block" type="blocktype" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>BLock Indicator<br/><br/>This indicates with 1000 block from the 1000
+            possible numbers belowing to a given NPA NXX combination.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VanitySearch" type="vanitysearchtype">
+        <xs:annotation>
+          <xs:documentation>Vanity number search (4-10) characters</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Quantity" type="qtytype">
+        <xs:annotation>
+          <xs:documentation>Quantity of consectutive number(s) desired</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MaxSets" type="maxsettype">
+        <xs:annotation>
+          <xs:documentation>Maximum Sets to Return</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="reservedidtype">
+    <xs:annotation>
+      <xs:documentation>Reserve DID Request<br/><br/> This Request Type would be used to Reserve a
+        DID or Range of DIDs.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AN" type="antype">
+        <xs:annotation>
+          <xs:documentation>Account Number to reserve Under</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DID" type="didtype">
+        <xs:annotation>
+          <xs:documentation>DID to Reserve</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Serial_no" type="serialnotype">
+        <xs:annotation>
+          <xs:documentation>Serial No to Reserve Under</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="requestoutresponsetype">
+    <xs:annotation>
+      <xs:documentation>Respone Out<br/><br/> This indicate a Response from the LNP Provider or the
+        E911 Provider or the DID Provider to the Partner.</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="CanPort">
+        <xs:annotation>
+          <xs:documentation>Response to CanPort Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="canportresponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="CanPortCode" type="canportcodetype">
+                  <xs:annotation>
+                    <xs:documentation>Port Code<br/><br/>9 : CANPORT DOWN : RETRY LATER<br/>10 : Not
+                      Eligible to Port<br/> 11 : ELIGIBLE TO PORT <br/> 12 : ALREADY PORTED TO YMAX
+                      <br/> 13 : WTN ALREADY PENDING ON A PAPI PORT<br/> 15 : BTN ALREADY PENDING ON
+                      A PAPI PORT<br/> 20 : ACTIVE IN CSR AND NOT PORTED <br/> 21 : PENDING
+                      RESIDENTIAL ORDERPAPI DOMESTIC</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="CanPortCodeDescription" type="canportcodedescriptiontype">
+                  <xs:annotation>
+                    <xs:documentation>Can Port Code Description<br/><br/>9 : CANPORT DOWN : RETRY
+                      LATER<br/>10 : Not Eligible to Port<br/> 11 : ELIGIBLE TO PORT <br/> 12 :
+                      ALREADY PORTED TO YMAX <br/> 13 : WTN ALREADY PENDING ON A PAPI PORT<br/> 15 :
+                      BTN ALREADY PENDING ON A PAPI PORT<br/> 20 : ACTIVE IN CSR AND NOT PORTED
+                      <br/> 21 : PENDING RESIDENTIAL ORDERPAPI DOMESTIC</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="SPID" type="spidtype">
+                  <xs:annotation>
+                    <xs:documentation>4 Character identifier of a Carrier</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="CarrierName" type="carriernametype">
+                  <xs:annotation>
+                    <xs:documentation>Owning Carrier name of a phone number <br/>A SPID maps to a
+                      Carrier Name </xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="NewPort">
+        <xs:annotation>
+          <xs:documentation>Response to Port In Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="newportresponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element minOccurs="0" name="Remarks" type="remarkstype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CancelPort">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="newportresponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ResubmitPort">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="newportresponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="QueryDIDRange" type="querydidrangeresponsetype">
+        <xs:annotation>
+          <xs:documentation>Response to Query DID Range Request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryPortStatus" type="queryportstatusresponsetype">
+        <xs:annotation>
+          <xs:documentation>Response to Query Port Status Request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryVanityDIDRange" type="queryvanitydidrangereponsetype">
+        <xs:annotation>
+          <xs:documentation>Response to Query Vanity Range Request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryAreaCodes" type="queryareacodesresponsetype">
+        <xs:annotation>
+          <xs:documentation>Response to Query Area Codes Request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="QueryExchange" type="queryexchangesresponsetype">
+        <xs:annotation>
+          <xs:documentation>Response to Query Exchanges Request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SetE911">
+        <xs:annotation>
+          <xs:documentation>Response to Set E911 Address Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="sete911responsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateE911">
+        <xs:annotation>
+          <xs:documentation>Response to Update E911 Address</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="updatee911responsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RemoveE911">
+        <xs:annotation>
+          <xs:documentation>Response to Remove E911 Address</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="removee911responsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetE911RespCode">
+        <xs:annotation>
+          <xs:documentation>Response to Get E911 Provisioning Response Code</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="gete911provcoderesponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="DIDList">
+        <xs:annotation>
+          <xs:documentation>Response to DID List Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="didlistresponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReserveDID">
+        <xs:annotation>
+          <xs:documentation>Response to Reserve DID Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="reservedidresponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SetCNAM">
+        <xs:annotation>
+          <xs:documentation>Response to Set CNAM</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="setcnamresponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AssignDID">
+        <xs:annotation>
+          <xs:documentation>Response to Assign DID Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="assigndidresponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ReleaseDID">
+        <xs:annotation>
+          <xs:documentation>Response to Release DID Request</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="releasedidresponsetype">
+              <xs:sequence minOccurs="0">
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="newportresponsetype">
+    <xs:annotation>
+      <xs:documentation>Port Response<br/><br/> This is a response the Partner will receive related
+        to their Port request. You will receive many responses varying from acknowldement of the
+        request to errors to completion and current status responses in between.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="querydidrangeresponsetype">
+    <xs:annotation>
+      <xs:documentation>Query DID Range Response<br/><br/> This is a response the Partner will
+        receive related to a Query DID Range Request.<br/></xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ResultSet" type="didqueryresultsettype"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="queryportstatusresponsetype">
+    <xs:annotation>
+      <xs:documentation>Query Port Status Response<br/><br/> This is a response the Partner will
+        receive related to a Query Port Status Request.<br/></xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ResultSet" type="queryportstatusresultsettype"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="queryvanitydidrangereponsetype">
+    <xs:annotation>
+      <xs:documentation>Query Vanity DID Response<br/><br/> This is a response the Partner will
+        receive related to a Query Vanity DID Request.<br/></xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ResultSet" type="vanityqueryresultsettype"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="sete911responsetype">
+    <xs:annotation>
+      <xs:documentation>E911 Set Address Response<br/><br/> This is a response the Partner will
+        receive related to their E911 Set Address request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="updatee911responsetype">
+    <xs:annotation>
+      <xs:documentation>Update E911 Response<br/><br/> This is a response the Partner will receive
+        related to their Update E911 request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="removee911responsetype">
+    <xs:annotation>
+      <xs:documentation>Remove E911 Response<br/><br/> This is a response the Partner will receive
+        related to their Remove E911 request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="gete911provcoderesponsetype">
+    <xs:annotation>
+      <xs:documentation>Get E911 Provisioning Code Response<br/><br/> This is a response the Partner
+        will receive related to their Get E911 Provisioning Code request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="didlistresponsetype">
+    <xs:annotation>
+      <xs:documentation>DID List Response<br/><br/> This is a response the Partner will receive
+        related to their DID List request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="canportresponsetype">
+    <xs:annotation>
+      <xs:documentation>Can Port Response<br/><br/> This is a response the Partner will receive
+        related to their Can Port request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="reservedidresponsetype">
+    <xs:annotation>
+      <xs:documentation>Reserve DID Response<br/><br/> This is a response the Partner will receive
+        related to their Reserve DID request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="setcnamresponsetype">
+    <xs:annotation>
+      <xs:documentation>SetCNAM Response<br/><br/> This is a response the Partner will receive
+        related to their SetCnam DID request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="assigndidresponsetype">
+    <xs:annotation>
+      <xs:documentation>Assign DID Response<br/><br/> This is a response the Partner will receive
+        related to their Assign DID request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="queryareacodes">
+    <xs:annotation>
+      <xs:documentation>Query Area Codes Request<br/><br/> This Request Type is used to query Area
+        Codes for a given state. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="State" type="statetype">
+        <xs:annotation>
+          <xs:documentation>State</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="releasedidresponsetype">
+    <xs:annotation>
+      <xs:documentation>Release DID Response<br/><br/> This is a response the Partner will receive
+        related to their Release DID request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="requestinresponsetype">
+    <xs:annotation>
+      <xs:documentation>Request In<br/><br/> This indicate a Response from Partner to the LNP
+        Provider or the E911 Provider or the DID Provider.</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="PortOut">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="portoutresponsetype">
+              <xs:sequence>
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PortOutSup">
+        <xs:complexType>
+          <xs:complexContent>
+            <xs:extension base="portoutresponsetype">
+              <xs:sequence>
+                <xs:element name="ResultSet" type="resultsettype"/>
+              </xs:sequence>
+            </xs:extension>
+          </xs:complexContent>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="CustomerServiceRecord" type="customerservicerecordtype"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="queryexchange">
+    <xs:annotation>
+      <xs:documentation>Query Exchanges Request<br/><br/> This Request Type is used to query
+        exchanges available for a given Area Code.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PON" type="pongrouptype">
+        <xs:annotation>
+          <xs:documentation>Purchase Order Number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NPA" type="npatype">
+        <xs:annotation>
+          <xs:documentation>Area Code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="portoutresponsetype">
+    <xs:annotation>
+      <xs:documentation>Port Out Response<br/><br/> This is the response the Partner will send
+        related to a Port Out request. Your response can be that of Success or an Error.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="responsebasetype"> </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="customerservicerecordtype">
+    <xs:annotation>
+      <xs:documentation>Customer Service Record Response<br/><br/> This is the response the Partner
+        will send related to a Custemer Service Record request.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype">
+        <xs:sequence minOccurs="0">
+          <xs:element name="ResultSet">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="NAME" type="nametype"> </xs:element>
+                <xs:element name="service_address" type="serviceaddresstype"/>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="queryareacodesresponsetype">
+    <xs:annotation>
+      <xs:documentation>Query DID Range Response<br/><br/> This is a response the Partner will
+        receive related to a Query DID Range Request.<br/></xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ResultSet">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="Npa" type="npatype">
+                  <xs:annotation>
+                    <xs:documentation>Area Code</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="queryexchangesresponsetype">
+    <xs:annotation>
+      <xs:documentation>Query DID Range Response<br/><br/> This is a response the Partner will
+        receive related to a Query DID Range Request.<br/></xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="responsebasetype">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ResultSet">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="Exchange">
+                  <xs:annotation>
+                    <xs:documentation>Exchange Elements </xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="State" type="statetype">
+                        <xs:annotation>
+                          <xs:documentation>State</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element name="AreaCode" type="npatype">
+                        <xs:annotation>
+                          <xs:documentation>Area Code</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element name="NXX" type="nxxtype">
+                        <xs:annotation>
+                          <xs:documentation>Number Plan Exchange<br/><br/> This is commonly known as
+                            exchange.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element name="Block" type="blocktype">
+                        <xs:annotation>
+                          <xs:documentation>BLock Indicator<br/><br/>This indicates with 1000 block
+                            from the 1000 possible numbers belowing to a given NPA NXX
+                            combination.</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                      <xs:element name="Area" type="areatype">
+                        <xs:annotation>
+                          <xs:documentation>Name of Community/City served</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="PartnerAPI">
+    <xs:annotation>
+      <xs:documentation>PartnerAPI Document Root<br/><br/> All transmissions must start with this
+        tag. </xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice maxOccurs="2">
+        <xs:element name="RequestOut" type="requestouttype">
+          <xs:annotation>
+            <xs:documentation>A request from the partner to Provider</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="RequestIn" type="requestintype">
+          <xs:annotation>
+            <xs:documentation>A request from the Provider to the partner</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="RequestOutResponse" type="requestoutresponsetype">
+          <xs:annotation>
+            <xs:documentation>A response from the Provider to the Partner</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="RequestInResponse" type="requestinresponsetype">
+          <xs:annotation>
+            <xs:documentation>A response from the Partner to the Provider </xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

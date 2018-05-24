@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<properties resource="gen/jdbc.properties" />
+
+    <classPathEntry location="/Users/msun/git/webservice.neustar/src/main/resources/gen/ojdbc7-12.1.0.1.jar" />
+
+	<context id="oracle" targetRuntime="MyBatis3">
+
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.FluentBuilderMethodsPlugin" />
+
+		<jdbcConnection driverClass="${jdbc.driverClassName}"
+			connectionURL="${jdbc.url}" userId="${jdbc.username}" password="${jdbc.password}">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.magicjack.webservice.iristel.domain.vo"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="sqlmaps"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="ANNOTATEDMAPPER"
+			targetPackage="com.magicjack.webservice.iristel.dao.mapper"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+
+		<table schema="MSUN" tableName="CREATE_PONS_REQUEST"
+			domainObjectName="CreatePonsRequest" delimitIdentifiers="true"
+			delimitAllColumns="true">
+			<property name="useActualColumnNames" value="false" />
+		</table>
+        <table schema="MSUN" tableName="CREATE_PONS_REQ_SVS_DETAILS"
+            domainObjectName="CreatePonsRequestServiceDetail" delimitIdentifiers="true"
+            delimitAllColumns="true">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        <table schema="MSUN" tableName="CRT_PONS_REQ_ROUTING_DETAILS"
+            domainObjectName="CreatePonsRequestRoutingDetail" delimitIdentifiers="true"
+            delimitAllColumns="true">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+
+	</context>
+</generatorConfiguration>
+
