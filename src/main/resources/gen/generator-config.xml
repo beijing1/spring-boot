@@ -44,14 +44,39 @@
 			delimitAllColumns="true">
 			<property name="useActualColumnNames" value="false" />
 		</table>
-        <table schema="MSUN" tableName="CREATE_PONS_REQ_SVS_DETAILS"
-            domainObjectName="CreatePonsRequestServiceDetail" delimitIdentifiers="true"
+		
+		<table schema="MSUN" tableName="CREATE_PONS_REQUEST_HIST"
+            domainObjectName="CreatePonsRequestHist" delimitIdentifiers="true"
             delimitAllColumns="true">
             <property name="useActualColumnNames" value="false" />
         </table>
-        <table schema="MSUN" tableName="CRT_PONS_REQ_ROUTING_DETAILS"
-            domainObjectName="CreatePonsRequestRoutingDetail" delimitIdentifiers="true"
+		
+        <table schema="MSUN" tableName="CREATE_PONS_REQ_SVS_DETAILS"
+            domainObjectName="CPReqServiceDetail" delimitIdentifiers="true"
             delimitAllColumns="true">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        
+        <table schema="MSUN" tableName="CRT_PONS_REQ_ROUTING_DETAILS"
+            domainObjectName="CPReqRoutingDetail" delimitIdentifiers="true"
+            delimitAllColumns="true">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+
+        <table schema="MSUN" tableName="CRT_PONS_REQ_SD_HIST"
+            domainObjectName="CPReqSDHist" delimitIdentifiers="true"
+            delimitAllColumns="true">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        
+        <table schema="MSUN" tableName="CRT_PONS_REQ_RD_HIST"
+            domainObjectName="CPReqRDHist" delimitIdentifiers="true"
+            delimitAllColumns="true">
+            <property name="useActualColumnNames" value="false" />
+        </table>
+        
+        <table schema="MSUN" tableName="CP_RESPONSE_ERRORS" delimitAllColumns="true"
+            domainObjectName="CreatePonResponseErrors" delimitIdentifiers="true">
             <property name="useActualColumnNames" value="false" />
         </table>
 
