@@ -14,7 +14,7 @@ import com.magicjack.webservice.iristel.config.DatabaseUtility;
 @SpringBootApplication
 @PropertySource("config.properties")
 @ComponentScan(basePackages = { "com.magicjack.webservice" }, excludeFilters = {
-        @ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, classes= {BatchApplication.class, BatchConfiguration.class})})
+        @ComponentScan.Filter(type=FilterType.ASSIGNABLE_TYPE, classes= {BatchRunner.class, BatchConfiguration.class})})
 @MapperScan("com.magicjack.webservice.iristel.dao.mapper")
 public class DBApplication {
     
